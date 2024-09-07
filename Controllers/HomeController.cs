@@ -44,5 +44,27 @@ namespace Crud_with_ASP.Controllers
         }
 
 
+        public IActionResult Edit( int id )
+        {
+            Employees emp =  dal.GetEmployeesById(id);
+            return View(emp);
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Employees emp)
+        {
+            try
+            {
+                dal.UpdateEmploye(emp);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
