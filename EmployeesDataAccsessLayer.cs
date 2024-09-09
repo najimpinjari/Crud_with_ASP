@@ -105,7 +105,20 @@ namespace Crud_with_ASP
             }
         }
 
+        public void DeleteEmploye(int? id)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
 
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+
+            }
+        }
 
 
 

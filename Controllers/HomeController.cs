@@ -66,5 +66,33 @@ namespace Crud_with_ASP.Controllers
                 return View();
             }
         }
+
+        public IActionResult Details(int id)
+        {
+            Employees emp = dal.GetEmployeesById(id);
+            return View(emp);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Employees emp = dal.GetEmployeesById(id);
+            return View(emp);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete( Employees emp )
+        {
+            try
+            {
+                dal.DeleteEmploye(emp.Id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
